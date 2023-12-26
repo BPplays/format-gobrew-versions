@@ -28,7 +28,7 @@ func containsNonNumeric(input string) bool {
 
 func string_to_semver(s string) (semver) {
 	if containsNonNumeric(s) {
-		log.Fatal("non semver")
+		log.Fatal("non semver", s)
 	}
 
 	// output := semver{0, 0, 0}
@@ -79,6 +79,8 @@ func gobrew_parse(s string) ([]semver) {
 	for _, field := range fields {
 		if !containsNonNumeric(field) {
 			result = append(result, string_to_semver(field)) 
+		} else {
+			fmt.Println(field)
 		}
 	}
 
