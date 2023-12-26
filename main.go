@@ -122,8 +122,46 @@ func gobrew_parse(s string) ([]semver) {
 
 
 
+func gobrew_filter(sem []semver) ([]semver) {
+	// Define a regular expression for splitting by comma
+	// regex := regexp.MustCompile("(?m)^[A-Za-z0-9.]")
+
+	// Use the Split function to split the string
+	result := []semver{}
+
+
+	last_maj := -1
+
+	last_min := -1
+
+	for _, s := range sem {
+
+		if last_maj != s.major {
+			result = append(result, s)
+			last_maj = s.major
+		} else {
+			if last_min != s.minor {
+				result = append(result, s)
+				last_min = s.minor
+			}
+		}
+
+
+
+
+
+	}
+
+
+	result = reverseSlice(result).([]semver)
+	return result
+
+}
+
+
+
 func main() {
 
-	fmt.Println(gobrew_parse(gobrew_lr()))
+	fmt.Println(gobrew_filter(gobrew_parse(gobrew_lr())))
 	
 }
