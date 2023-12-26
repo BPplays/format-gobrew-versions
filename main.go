@@ -17,7 +17,7 @@ type semver struct {
 
 func containsNumeric(input string) bool {
 	// Define a regular expression pattern that matches anything other than 0-9 or .
-	pattern := ".+\\..+\\..+"
+	pattern := "^[0-9]+\\.[0-9]+\\.[0-9]+$"
 
 	// Compile the regular expression
 	regexp := regexp.MustCompile(pattern)
@@ -39,14 +39,14 @@ func string_to_semver(s string) (semver) {
     for i := 0; i <= 2; i++ {
 		in, err := strconv.Atoi(str_sl[i])
 		if err != nil {
-			log.Fatal("non semver")
+			log.Fatal("non semver", err)
 		}
 		int_sl[i] = in
     }
 
 
 
-	fmt.Println(int_sl[0], int_sl[1], int_sl[2])
+	// fmt.Println(int_sl[0], int_sl[1], int_sl[2])
 	return semver{int_sl[0], int_sl[1], int_sl[2]}
 }
 
