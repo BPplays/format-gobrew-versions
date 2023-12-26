@@ -46,7 +46,7 @@ func string_to_semver(s string) (semver) {
 
 
 
-	// fmt.Println(string(output))
+	fmt.Println(int_sl[0], int_sl[1], int_sl[2])
 	return semver{int_sl[0], int_sl[1], int_sl[2]}
 }
 
@@ -85,10 +85,10 @@ func gobrew_parse(s string) ([]semver) {
 		if field != "" {
 			if containsNumeric(field) {
 				result = append(result, string_to_semver(field))
-				fmt.Printf("-%v_\n", field)
-			} else {
 				// fmt.Printf("-%v_\n", field)
-			}
+			} // else {
+			// 	// fmt.Printf("-%v_\n", field)
+			// }
 		}
 
 	}
