@@ -34,15 +34,14 @@ func string_to_semver(s string) (semver) {
 	// output := semver{0, 0, 0}
 
 	str_sl := strings.Split(s, ".")
-	int_sl := [10]int{0, 0, 0}
+	int_sl := [2]int{0, 0, 0}
 
     for i := 0; i < 2; i++ {
 		in, err := strconv.Atoi(str_sl[i])
 		if err != nil {
 			log.Fatal("non semver")
 		}
-		int_sl[in] = in
-		fmt.Println(int_sl[in])
+		int_sl[i] = in
     }
 
 
