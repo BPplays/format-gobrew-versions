@@ -54,7 +54,7 @@ func string_to_semver(s string) (semver) {
 func gobrew_lr() (string) {
 
 
-	cmd := exec.Command("gobrew", "ls-remote")
+	cmd := exec.Command("gobrew", "ls-remote", "sed \"s,\\x1B\\[[0-9;]*[a-zA-Z],,g\"", "|", "tac")
 
 
 	output, err := cmd.CombinedOutput()
