@@ -139,6 +139,7 @@ func gobrew_filter(sem []semver) ([]semver) {
 		if last_maj != s.major {
 			result = append(result, s)
 			last_maj = s.major
+			last_min = s.minor
 		} else {
 			if last_min != s.minor {
 				result = append(result, s)
