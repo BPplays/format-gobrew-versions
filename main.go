@@ -42,6 +42,7 @@ func string_to_semver(s string) (semver) {
 			log.Fatal("non semver")
 		}
 		int_sl[in] = in
+		fmt.Println(int_sl[in])
     }
 
 
