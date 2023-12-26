@@ -84,9 +84,10 @@ func gobrew_parse(s string) ([]semver) {
 	for _, field := range fields {
 		if field != "" {
 			if containsNumeric(field) {
-				result = append(result, string_to_semver(field)) 
-			} else {
+				result = append(result, string_to_semver(field))
 				fmt.Printf("-%v_\n", field)
+			} else {
+				// fmt.Printf("-%v_\n", field)
 			}
 		}
 
