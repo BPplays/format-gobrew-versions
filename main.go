@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"os/exec"
+	"reflect"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -73,6 +75,24 @@ func gobrew_lr() (string) {
 }
 
 
+func reverseSlice(inputSlice interface{}) interface{} {
+	sliceValue := reflect.ValueOf(inputSlice)
+
+	if sliceValue.Kind() != reflect.Slice {
+		panic("Input is not a slice")
+	}
+
+	length := sliceValue.Len()
+	reversed := reflect.MakeSlice(sliceValue.Type(), length, length)
+
+	for i := 0; i < length; i++ {
+		reversed.Index(length - i - 1).Set(sliceValue.Index(i))
+	}
+
+	return reversed.Interface()
+}
+
+
 func gobrew_parse(s string) ([]semver) {
 	// Define a regular expression for splitting by comma
 	// regex := regexp.MustCompile("(?m)^[A-Za-z0-9.]")
@@ -84,6 +104,7 @@ func gobrew_parse(s string) ([]semver) {
 	for _, field := range fields {
 		if field != "" {
 			if containsNumeric(field) {
+
 				result = append(result, string_to_semver(field))
 				// fmt.Printf("-%v_\n", field)
 			} // else {
@@ -92,6 +113,16 @@ func gobrew_parse(s string) ([]semver) {
 		}
 
 	}
+
+	// Helper function to reverse the slice
+	reverse := func() {
+		sort.Slice(result, func(i, j int) bool {
+			return i > j
+		})
+	}
+
+	// Reverse the slice using the helper function
+	reverse()
 
 	return result
 
