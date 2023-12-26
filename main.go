@@ -17,7 +17,7 @@ type semver struct {
 
 func containsNonNumeric(input string) bool {
 	// Define a regular expression pattern that matches anything other than 0-9 or .
-	pattern := "[^0-9.]"
+	pattern := "[^0-9.]*"
 
 	// Compile the regular expression
 	regexp := regexp.MustCompile(pattern)
