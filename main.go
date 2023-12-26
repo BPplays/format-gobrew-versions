@@ -165,7 +165,7 @@ func main() {
 
 	// fmt.Println(gobrew_filter(gobrew_parse(gobrew_lr())))
 	for _, s := range gobrew_filter(gobrew_parse(gobrew_lr())) {
-		fmt.Printf("%v.%v.%v", s.major, s.minor, s.patch)
+		fmt.Printf("%v.%v.%v\n", s.major, s.minor, s.patch)
 	}
 	
 }
