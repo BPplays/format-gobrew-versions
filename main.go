@@ -15,9 +15,9 @@ type semver struct {
 	patch int
 }
 
-func containsNonNumeric(input string) bool {
+func containsNumeric(input string) bool {
 	// Define a regular expression pattern that matches anything other than 0-9 or .
-	pattern := "[^0-9.]*"
+	pattern := "^[0-9.]+$"
 
 	// Compile the regular expression
 	regexp := regexp.MustCompile(pattern)
@@ -27,7 +27,7 @@ func containsNonNumeric(input string) bool {
 }
 
 func string_to_semver(s string) (semver) {
-	if containsNonNumeric(s) {
+	if !containsNumeric(s) {
 		log.Fatal("non semver", s)
 	}
 
@@ -77,7 +77,7 @@ func gobrew_parse(s string) ([]semver) {
 	fields := strings.Fields(s)
 
 	for _, field := range fields {
-		if !containsNonNumeric(field) {
+		if containsNumeric(field) {
 			result = append(result, string_to_semver(field)) 
 		} else {
 			fmt.Printf("-%v_\n", field)
