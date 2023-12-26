@@ -34,7 +34,7 @@ func string_to_semver(s string) (semver) {
 	// output := semver{0, 0, 0}
 
 	str_sl := strings.Split(s, ".")
-	int_sl := []int{0, 0, 0}
+	int_sl := [10]int{0, 0, 0}
 
     for i := 0; i < 2; i++ {
 		in, err := strconv.Atoi(str_sl[i])
