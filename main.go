@@ -80,7 +80,7 @@ func gobrew_parse(s string) ([]semver) {
 		if !containsNonNumeric(field) {
 			result = append(result, string_to_semver(field)) 
 		} else {
-			fmt.Println("-",field, "_")
+			fmt.Printf("-%v_\n", field)
 		}
 	}
 
