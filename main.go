@@ -36,7 +36,7 @@ func string_to_semver(s string) (semver) {
 	str_sl := strings.Split(s, ".")
 	int_sl := [3]int{0, 0, 0}
 
-    for i := 0; i < 2; i++ {
+    for i := 0; i <= 2; i++ {
 		in, err := strconv.Atoi(str_sl[i])
 		if err != nil {
 			log.Fatal("non semver")
