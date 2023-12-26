@@ -6,7 +6,6 @@ import (
 	"os/exec"
 	"reflect"
 	"regexp"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -86,7 +85,7 @@ func reverseSlice(inputSlice interface{}) interface{} {
 	reversed := reflect.MakeSlice(sliceValue.Type(), length, length)
 
 	for i := 0; i < length; i++ {
-		reversed.Index(length - i - 1).Set(sliceValue.Index(i))
+		reversed.Index(length-i-1).Set(sliceValue.Index(i))
 	}
 
 	return reversed.Interface()
@@ -114,16 +113,8 @@ func gobrew_parse(s string) ([]semver) {
 
 	}
 
-	// Helper function to reverse the slice
-	reverse := func() {
-		sort.Slice(result, func(i, j int) bool {
-			return i > j
-		})
-	}
 
-	// Reverse the slice using the helper function
-	reverse()
-
+	result = reverseSlice(result).([]semver)
 	return result
 
 }
